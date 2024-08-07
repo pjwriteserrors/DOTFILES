@@ -1,0 +1,66 @@
+{
+    "layer": "top", // Waybar at top layer
+    "position": "top", // Waybar at the bottom of your screen
+    "height": 50, // Waybar height
+    "width": 800, // Waybar width
+    // Choose the order of the modules
+    "modules-left": ["clock", "hyprland/workspaces"],
+    "modules-center": [],
+    "modules-right": [ "network", "battery", "bluetooth"],
+
+    // Modules configuration
+    "clock": {
+        "format": "{:%H:%M}",
+        "tooltip-format": "<span size='14pt' font='CaskaydiaCove Nerd Font'>{calendar}</span>",
+        "calendar": {
+                    "mode"          : "months",
+                    "weeks-pos"     : "right",
+                    "on-scroll"     : 1,
+                    "format": {
+                              "months":     "<span color='#ffead3'><b>{}</b></span>",
+                              "days":       "<span color='#d8caac'><b>{}</b></span>",
+                              "weeks":      "<span color='#505a60'><b>W{}</b></span>",
+                              "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+                              "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+                              }
+                    },
+        "on-click": "rofi -show power-menu -modi power-menu:~/.config/rofi/scripts/rofi-power-menu/rofi-power-menu -location 2"
+    },
+
+    "hyprland/workspaces": {
+	    "format": "{name}",
+	    "on-click": "activate",
+        "sort-by-number": true
+    },
+    "sway/window": {
+        "max-length": 50
+    },
+    "battery": {
+        "interval": 10,
+        "format": "{capacity}% {icon}",
+        "format-icons": [" ", " ", " ", " ", " "],
+        "max-length": 500
+    },
+    "network": {
+        "format-wifi": " {bandwidthUpBytes}  {bandwidthDownBytes}  ",
+        "format-ethernet": "{bandwidthUpBytes} {bandwidthDownBytes} ",
+        "format-disconnected": "Disconnected  ",
+        "tooltip-format": "{essid} | {ipaddr} | {signalStrength}%",
+        "on-click": "/home/lu/.config/rofi/scripts/rofi-wifi-menu/rofi-wifi-menu.sh"
+    },
+
+    "disk": {
+        "format": " {percentage_free}% Free",
+        "tooltip-format": "{specific_free:0.2f} GB free out of {specific_total:0.2f} GB",
+	    "unit": "GB"
+        },
+
+    "bluetooth": {
+        "format-on": "",
+        "format-disabled": "",
+        "format-off": "",
+        "on-click": "rfkill toggle bluetooth",
+        "on-click-right": "~/.config/rofi/scripts/rofi-bluetooth/rofi-bluetooth",
+        "tooltip-format": "{status}"
+}
+}
